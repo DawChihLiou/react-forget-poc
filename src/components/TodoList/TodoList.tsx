@@ -6,15 +6,17 @@ import {
   useEffect,
   useContext,
 } from 'react';
-import { initialTodos, getUpdated, getFiltered } from '../../utils/todo';
-import UnmemoizedTodo from '../Todo';
+import {
+  initialTodos,
+  getUpdated,
+  getFiltered,
+  checkIsTodoChanged,
+} from '../../utils/todo';
+import Todo from '../Todo';
 import AddTodo from '../AddTodo';
 import { VisibilityStatus, TodoBody } from '../../types';
 import styles from './styles.module.css';
 import { RmcContext } from '../../context/rmc';
-
-// ✨
-const Todo = memo(UnmemoizedTodo);
 
 interface TodoListProps {
   visibility: VisibilityStatus;
@@ -29,34 +31,31 @@ export default function TodoList({ visibility, themeColor }: TodoListProps) {
 
   // ✨
   const handleChange =
-    rmc[0] ||
-    (rmc[0] = (todo: string) => setTodos((todos) => getUpdated(todos, todo)));
+    rmc[3] ||
+    (rmc[3] = (todo: string) => setTodos((todos) => getUpdated(todos, todo)));
 
   // ✨
-  const filtered = (rmc[1] = getFiltered(todos, visibility));
+  let filtered, jsxTodos;
 
-  // ✨
-  const jsxTodos = (rmc[2] = (
+  filtered = rmc[4] = getFiltered(todos as TodoBody[], visibility);
+  jsxTodos = rmc[5] = (
     <ul className={styles.list}>
       {(filtered as TodoBody[]).map((todo) => (
         <Todo key={todo.id} todo={todo} onChange={handleChange as any} />
       ))}
     </ul>
-  ));
+  );
 
   // ✨
-  const jsxAddTodo = (rmc[3] = (
+  const jsxAddTodo = (rmc[6] = (
     <AddTodo setTodos={setTodos} themeColor={themeColor} />
   ));
 
-  // ✨
-  const jsxTodoList = (rmc[4] = (
+  return (rmc[6] = (
     <div>
       <div className={styles.wrapper}></div>
       {jsxTodos}
       {jsxAddTodo}
     </div>
   ));
-
-  return rmc[4];
 }

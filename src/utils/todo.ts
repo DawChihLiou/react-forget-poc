@@ -45,3 +45,15 @@ export function getFiltered(todos: TodoBody[], visibility: VisibilityStatus) {
   });
   return filtered;
 }
+
+export function checkIsTodoChanged(t1: TodoBody[], t2: TodoBody[]): boolean {
+  if (t1.length !== t2.length) {
+    return true;
+  }
+  for (let i = 0; i < t1.length; i++) {
+    if (t1[i].completed !== t2[i].completed) {
+      return true;
+    }
+  }
+  return false;
+}

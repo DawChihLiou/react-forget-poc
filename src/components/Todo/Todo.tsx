@@ -10,11 +10,12 @@ interface TodoProps {
 
 export default function Todo({ todo, onChange }: TodoProps) {
   const count = useCounter();
+  const handleClick = () => onChange(todo.content);
 
   return (
     <li className={styles.wrapper}>
       <button
-        onClick={() => onChange(todo.content)}
+        onClick={handleClick}
         className={clsx(styles.button, { [styles.filled]: todo.completed })}
       />
       <span

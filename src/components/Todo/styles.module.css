@@ -43,6 +43,7 @@
   width: 0.5rem;
   height: 0.5rem;
   z-index: 1;
+  cursor: pointer;
 }
 
 .filled {
