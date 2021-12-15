@@ -1,0 +1,23 @@
+.wrapper {
+  padding: 0.5rem;
+  border-radius: 2rem;
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.input {
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: 0;
+  flex-grow: 1;
+  margin-right: 0.25rem;
+  color: #fff;
+}
+
+.button {
+  padding: 0.5rem 0.75rem;
+  border-radius: 2rem;
+  border: 0;
+  color: #efefef;
+}

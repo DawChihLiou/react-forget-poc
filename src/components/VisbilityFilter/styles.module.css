@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  width: 100%;
+  margin-left: 0.5rem;
+  border-radius: 2rem;
+  padding: 0 1rem;
+  flex-grow: 1;
+}
+
+.wrapper button {
+  border: 0;
+  background-color: transparent;
+  color: #efefef;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: 700;
+}

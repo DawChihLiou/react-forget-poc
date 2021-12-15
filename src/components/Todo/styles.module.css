@@ -1,0 +1,51 @@
+.wrapper {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 2rem;
+  border: 0;
+  display: flex;
+  color: #fff;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.text {
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  font-style: italic;
+  font-weight: 100;
+}
+
+.button {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #efefef;
+  background-color: transparent;
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.filled {
+  border: 0;
+  background-color: #efefef;
+}
+
+.label {
+  background-color: #f1c40f;
+  border-radius: 50%;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0.3rem;
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
