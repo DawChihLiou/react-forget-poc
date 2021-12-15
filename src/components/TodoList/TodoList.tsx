@@ -28,12 +28,7 @@ export default function TodoList({ visibility, themeColor }: TodoListProps) {
       </div>
       <ul className={styles.list}>
         {filtered.map((todo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onChange={handleChange}
-            themeColor={themeColor}
-          />
+          <Todo key={todo.id} todo={todo} onChange={handleChange} />
         ))}
       </ul>
       <AddTodo setTodos={setTodos} themeColor={themeColor} />

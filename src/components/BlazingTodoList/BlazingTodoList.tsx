@@ -20,11 +20,7 @@ export default function BlazingTodoList() {
     <div className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.bar}>
         <ColorPicker color={themeColor} onChange={setThemeColor} />
-        <VisibilityFilter
-          onChange={onFilterChange}
-          visibility={visibility}
-          themeColor={themeColor}
-        />
+        <VisibilityFilter onChange={onFilterChange} visibility={visibility} />
       </div>
       <TodoList visibility={visibility} themeColor={themeColor} />
     </div>
