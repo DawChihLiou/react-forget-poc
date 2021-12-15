@@ -1,10 +1,17 @@
-import { useState, memo, useCallback, useMemo } from 'react';
+import {
+  useState,
+  memo,
+  useCallback,
+  useMemo,
+  useEffect,
+  useContext,
+} from 'react';
 import { initialTodos, getUpdated, getFiltered } from '../../utils/todo';
 import UnmemoizedTodo from '../Todo';
 import AddTodo from '../AddTodo';
-import { VisibilityStatus } from '../../types';
+import { VisibilityStatus, TodoBody } from '../../types';
 import styles from './styles.module.css';
-import { useCounter } from '../../hooks/useCounter';
+import { RmcContext } from '../../context/rmc';
 
 // ✨
 const Todo = memo(UnmemoizedTodo);
@@ -18,26 +25,38 @@ export default function TodoList({ visibility, themeColor }: TodoListProps) {
   const [todos, setTodos] = useState(initialTodos);
 
   // ✨
-  const handleChange = useCallback(
-    (todo: string) => setTodos((todos) => getUpdated(todos, todo)),
-    [],
-  );
+  const rmc = useContext(RmcContext);
 
   // ✨
-  const filtered = useMemo(() => getFiltered(todos, visibility), [
-    todos,
-    visibility,
-  ]);
-  // const filtered = getFiltered(todos, visibility);
-  return (
+  const handleChange =
+    rmc[0] ||
+    (rmc[0] = (todo: string) => setTodos((todos) => getUpdated(todos, todo)));
+
+  // ✨
+  const filtered = (rmc[1] = getFiltered(todos, visibility));
+
+  // ✨
+  const jsxTodos = (rmc[2] = (
+    <ul className={styles.list}>
+      {(filtered as TodoBody[]).map((todo) => (
+        <Todo key={todo.id} todo={todo} onChange={handleChange as any} />
+      ))}
+    </ul>
+  ));
+
+  // ✨
+  const jsxAddTodo = (rmc[3] = (
+    <AddTodo setTodos={setTodos} themeColor={themeColor} />
+  ));
+
+  // ✨
+  const jsxTodoList = (rmc[4] = (
     <div>
       <div className={styles.wrapper}></div>
-      <ul className={styles.list}>
-        {filtered.map((todo) => (
-          <Todo key={todo.id} todo={todo} onChange={handleChange} />
-        ))}
-      </ul>
-      <AddTodo setTodos={setTodos} themeColor={themeColor} />
+      {jsxTodos}
+      {jsxAddTodo}
     </div>
-  );
+  ));
+
+  return rmc[4];
 }
