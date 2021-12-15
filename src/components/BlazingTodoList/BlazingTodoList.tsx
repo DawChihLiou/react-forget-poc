@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { VisibilityStatus } from '../../types';
 import ColorPicker from '../ColorPicker';
 import VisibilityFilter from '../VisbilityFilter';
@@ -14,7 +14,7 @@ export default function BlazingTodoList() {
   };
   // color picker state
   const [themeColor, setThemeColor] = useState('#0052b3');
-  const color = dim(0.15, themeColor);
+  const color = useMemo(() => dim(0.15, themeColor), [themeColor]);
 
   return (
     <div className={styles.wrapper} style={{ backgroundColor: color }}>
